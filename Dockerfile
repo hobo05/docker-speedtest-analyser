@@ -1,21 +1,18 @@
 FROM alpine:3.20
 
 # greet me :)
-MAINTAINER Tobias Rös - <roes@amicaldo.de>
+LABEL org.opencontainers.image.authors="Tobias Rös - <roes@amicaldo.de>"
 
 # install dependencies
 RUN apk update && apk add \
   bash \
   git \
   nodejs \
-  nodejs-npm \
+  npm \
   nginx \
   nginx-mod-http-lua \
   python3 \
   py-pip
-
-
-RUN pip install speedtest-cli
 
 # remove default content
 RUN rm -R /var/www/*
@@ -30,11 +27,16 @@ RUN mkdir -p /var/www/html
 RUN touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
 
 # install vhost config
-ADD ./config/vhost.conf /etc/nginx/conf.d/default.conf
+ADD ./config/vhost.conf /etc/nginx/http.d/default.conf
 ADD config/nginxEnv.conf /etc/nginx/modules/nginxEnv.conf
 
 # install webroot files
 ADD ./ /var/www/html/
+
+# create and install speedtest script venv
+RUN python3 -m venv /var/www/html/scripts && \
+  . /var/www/html/scripts/bin/activate && \
+  pip install speedtest-cli
 
 # install bower dependencies
 RUN npm install -g yarn && cd /var/www/html/ && yarn install

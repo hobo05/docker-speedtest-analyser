@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/var/www/html/scripts/bin/python
 
 # Script originally provided by AlekseyP
 # https://www.reddit.com/r/technology/comments/43fi39/i_set_up_my_raspberry_pi_to_automatically_tweet/
