@@ -11,13 +11,15 @@ import datetime
 import time
 from speedtest import Speedtest
 import logging
+from logging.handlers import TimedRotatingFileHandler
+import sys
 
 #static values
 CSV_FIELDNAMES=["timestamp", "ping", "download", "upload"]
 FILEPATH = os.path.dirname(os.path.abspath(__file__)) + '/../data/result.csv'
+LOGPATH = os.path.dirname(os.path.abspath(__file__)) + '/../data/speedtest.log'
 
-def runSpeedtest():
-        logger = logging.getLogger(__name__)
+def runSpeedtest(logger):
 
         #run speedtest-cli
         logger.info('--- running speedtest ---')
@@ -80,9 +82,11 @@ if __name__ == '__main__':
         logging.basicConfig(
                 format="%(asctime)s %(levelname)-8s %(message)s",
                 level=logging.INFO,
-                datefmt="%Y-%m-%d %H:%M:%S")
-
-        runSpeedtest()
-
+                datefmt="%Y-%m-%d %H:%M:%S",
+                handlers=[
+                        TimedRotatingFileHandler(LOGPATH, when='midnight'),
+                        logging.StreamHandler(sys.stdout)
+                ])
         logger = logging.getLogger(__name__)
+        runSpeedtest(logger)
         logger.info('speedtest complete')

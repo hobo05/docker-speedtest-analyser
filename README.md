@@ -2,6 +2,7 @@
 
 * Originally forked from https://github.com/roest01/docker-speedtest-analyser
 * Updated to work as of late 2024 or whatever my latest commit is
+* Logs to file and stdout
 * Log empty result when speedtest fails due to connection error
   * This makes it obvious that there is a gap when the speedtest could not run even though it was triggered
 
