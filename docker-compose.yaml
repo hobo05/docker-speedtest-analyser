@@ -1,7 +1,7 @@
 services:
   speedtest:
     container_name: speedtest
-    image: hobo05/docker-speedtest-analyser
+    image: hobo05/docker-speedtest-analyser:latest
     restart: unless-stopped
     network_mode: bridge
 #    volumes:

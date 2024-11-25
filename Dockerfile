@@ -23,6 +23,9 @@ RUN mkdir -p /run/nginx
 RUN mkdir -p /etc/nginx/global
 RUN mkdir -p /var/www/html
 
+# chown early to prevent bloated image
+RUN chown -R nginx:nginx /var/www/html/
+
 # touch required files
 RUN touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
 
@@ -44,7 +47,6 @@ RUN npm install -g yarn && cd /var/www/html/ && yarn install
 EXPOSE 80
 EXPOSE 443
 
-RUN chown -R nginx:nginx /var/www/html/
 RUN chmod +x /var/www/html/config/run.sh
 RUN chmod 755 /var/www/html/scripts/speedtestRunner.py
 ENTRYPOINT ["/var/www/html/config/run.sh"]
