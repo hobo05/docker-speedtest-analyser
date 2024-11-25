@@ -1,7 +1,6 @@
 FROM alpine:3.20
 
-# greet me :)
-LABEL org.opencontainers.image.authors="Tobias Rös - <roes@amicaldo.de>"
+LABEL org.opencontainers.image.authors="Tobias Rös - <roes@amicaldo.de>, Tim Cheng - <tim.cheng09@gmail.com>"
 
 # install dependencies
 RUN apk update && apk add \
