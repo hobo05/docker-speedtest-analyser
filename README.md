@@ -1,3 +1,10 @@
+# Fork message
+
+* Originally forked from https://github.com/roest01/docker-speedtest-analyser
+* Updated to work as of late 2024 or whatever my latest commit is
+* Log empty result when speedtest fails due to connection error
+  * This makes it obvious that there is a gap when the speedtest could not run even though it was triggered
+
 # Docker Speedtest Analyser
 
 Automated docker speedtest analyser tool with included web interface to monitor your internet speed connection over time. Setup at home on your NAS (Synology, QNAP tested) and the container runs hourly speedtests. The speedtest results are displayed in an webinterface as line graph(s) over the day.
@@ -11,7 +18,7 @@ your internet connectivity speed.
 ![Statistic Screenshot](https://github.com/roest01/docker-speedtest-analyser/raw/master/speedlogger_screenshot.png?raw=true)
 
 # Docker Hub Image
-You can get the publicly available docker image at the following location: [roest/docker-speedtest-analyser](https://hub.docker.com/r/roest/docker-speedtest-analyser/).
+You can get the publicly available docker image at the following location: [hobo05/docker-speedtest-analyser](https://hub.docker.com/r/hobo05/docker-speedtest-analyser/).
 
 
 # Facts
