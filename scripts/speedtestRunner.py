@@ -29,7 +29,7 @@ def runSpeedtest(logger):
                 servers = []
                 threads = None
 
-                s = Speedtest()
+                s = Speedtest(secure=True)
                 s.get_servers(servers)
                 s.get_best_server()
                 s.download(threads=threads)
